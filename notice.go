@@ -79,17 +79,17 @@ func eventToBuild(data string) (*cloudbuild.Build, error) {
 }
 
 func createSlackMessage(build *cloudbuild.Build) slack.Payload {
-    title := "Build Logs"
+    title := "Cloud Build Result"
     a := slack.Attachment{
         Title:     &title,
         TitleLink: &build.LogUrl,
     }
     a.AddField(slack.Field{
-        Title: "Status",
+        Title: "Cloud Build ",
         Value: build.Status,
     })
     p := slack.Payload{
-        Text:        fmt.Sprintf("Build `%s`", build.Id),
+        Text:        fmt.Sprintf("CBuild `%s`", build.Id),
         Markdown:    true,
         Attachments: []slack.Attachment{a},
     }
